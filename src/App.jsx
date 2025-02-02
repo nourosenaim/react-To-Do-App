@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import ToDoForm from "./components/ToDoForm.jsx";
 import TodoList from "./components/TodoList.jsx";
@@ -7,7 +7,14 @@ function App() {
     const [todos, setTodos] = useState([]);
 
     const addTodo = (text) =>{
-        setTodos([...todos, { id: Date.now(), text , completed: false }]);
+
+        const currentDate = new Date();
+        const date = currentDate.toLocaleDateString();
+        const time = currentDate.toLocaleTimeString();
+
+        const timeDuration = 3600;
+
+        setTodos([...todos, { id: Date.now(), text , completed: false, date, time, timer:timeDuration }]);
     };
 
     // Toggle Completion
@@ -18,6 +25,23 @@ function App() {
             )
         );
     };
+
+    // Start timer for each task
+        useEffect(() => {
+            const interval = setInterval(() => {
+                setTodos((prevTodos) =>
+                    prevTodos.map((todo) => {
+                        if (todo.timer > 0) {
+                            return { ...todo, timer: todo.timer - 1 };
+                        }
+                        return todo;
+                    })
+                );
+            }, 1000);
+
+            // Cleanup the interval on component unmount
+            return () => clearInterval(interval);
+        }, []);
 
     // Delete Todo
     const deleteTodo = (id) => {
@@ -43,10 +67,11 @@ function App() {
                 toggleCompleted={toggleCompleted}
                 deleteTodo={deleteTodo}
                 editTodo={editTodo}
+
             />
         </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

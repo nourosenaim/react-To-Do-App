@@ -5,12 +5,41 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo, editTodo }) => {
     const [newText, setNewText] = useState(todo.text);
 
     const handleEdit = () =>{
+
         if (!newText.trim()) return;
+
         editTodo(todo.id, newText);
         setIsEditing(false);
     }
+
+    // Convert seconds into MM:SS format
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    };
     return(
-        <li className={`todo-item ${todo.completed ? "Completed" :""}`}>
+        <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+            <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={()=> toggleCompleted(todo.id)}
+            />
+
+
+            <div className="task-time">
+                <p>
+                    <strong>Date: {todo.date} Time:{todo.time}</strong>
+                </p>
+
+                {/* Display the timer */}
+                {todo.timer > 0 ? (
+                    <p><strong>Time left:</strong> {formatTime(todo.timer)}</p>
+                ) : (
+                    <p><strong>Time's up!</strong></p>
+                )}
+            </div>
+
             {isEditing ? (
                 <input
                     type="text"
