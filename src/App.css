@@ -1,42 +1,127 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* App Container */
+.App {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  color: #333;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Todo Form */
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.todo-form input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #6a11cb;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.card {
-  padding: 2em;
+.todo-form button {
+  padding: 10px 15px;
+  border: none;
+  background: #6a11cb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+.todo-form button:hover {
+  background: #2575fc;
+}
+
+/* Todo List */
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  background: #f8f8f8;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Completed Todo */
+.todo-item.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.buttons button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.buttons button:first-child {
+  background: #28a745;
+  color: white;
+}
+
+.buttons button:first-child:hover {
+  background: #218838;
+}
+
+.buttons button:nth-child(2) {
+  background: #ffc107;
+  color: white;
+}
+
+.buttons button:nth-child(2):hover {
+  background: #e0a800;
+}
+
+.buttons button:last-child {
+  background: #dc3545;
+  color: white;
+}
+
+.buttons button:last-child:hover {
+  background: #c82333;
 }

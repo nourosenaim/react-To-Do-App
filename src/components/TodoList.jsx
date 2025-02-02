@@ -7,8 +7,8 @@ const TodoList = ({ todos, toggleCompleted, deleteTodo, editTodo }) =>{
                 <TodoItem
                     key={todo.id}
                     todo={todo}
-                    toggleComplete={toggleCompleted}
-                    deleteTod0={deleteTodo}
+                    toggleCompleted={toggleCompleted}
+                    deleteTodo={deleteTodo}
                     editTodo={editTodo}
                 />
             ))}

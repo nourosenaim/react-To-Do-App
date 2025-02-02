@@ -4,7 +4,7 @@ import ToDoForm from "./components/ToDoForm.jsx";
 import TodoList from "./components/TodoList.jsx";
 
 function App() {
-    const [todos, setTodos] = useState();
+    const [todos, setTodos] = useState([]);
 
     const addTodo = (text) =>{
         setTodos([...todos, { id: Date.now(), text , completed: false }]);
@@ -44,11 +44,7 @@ function App() {
                 deleteTodo={deleteTodo}
                 editTodo={editTodo}
             />
-
-            
-
         </div>
-
     </>
   )
 }

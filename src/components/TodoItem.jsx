@@ -1,23 +1,24 @@
 import {useState} from 'react';
 
-const TodoItem = ({ todo, toggleComplete, deleteTodo, editTodo }) => {
+const TodoItem = ({ todo, toggleCompleted, deleteTodo, editTodo }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newText, setNewText] = useState(todo.text);
 
     const handleEdit = () =>{
-        editTodo(todo.id, newtext);
+        if (!newText.trim()) return;
+        editTodo(todo.id, newText);
         setIsEditing(false);
     }
     return(
-        <li className={`todo-item $(todo.completed ? "Completed" :"")`}>
+        <li className={`todo-item ${todo.completed ? "Completed" :""}`}>
             {isEditing ? (
                 <input
                     type="text"
-                    value="newtext"
+                    value={newText}
                     onChange={(e) => setNewText(e.target.value)}
                 />
             ) :(
-                <span onClick={() => toggleComplete(todo.id)}>{todo.text}</span>
+                <span onClick={() => toggleCompleted(todo.id)}>{todo.text}</span>
             )}
             <div className="buttons">
                 {
